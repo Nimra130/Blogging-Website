@@ -1,0 +1,32 @@
+name: wr-prvalidation
+on:
+  pull_request:
+     branches:
+        -develop
+jobs:
+    linting:
+    runs-on: ubantu-latest
+    steps:
+      -name: checkout repo
+       uses: actions/checkout@v4
+       
+      - name: Install htmlhint
+        run: npm install --save-dev htmlhint
+
+
+      - name: Install stylelint
+        run: npm install --save-dev stylelint
+
+  
+      - name: Lint HTML Files
+        run: npx htmlhint "**/*.html"
+
+      - name: Lint CSS Files
+        run:  npx stylelint "**/*.css"
+  
+      -name: Build website
+       run:
+         npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./"
+        
+
+      
