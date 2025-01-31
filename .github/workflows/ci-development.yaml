@@ -8,7 +8,7 @@ jobs:
   runs-on: ubantu-latest
   steps:
     -name: checkout repo
-     uses: actions/Checkout@v4
+     use: actions/Checkout@v4
     -name: lint html and css code
      run: |
        npx htmlhint "**/*.html"
